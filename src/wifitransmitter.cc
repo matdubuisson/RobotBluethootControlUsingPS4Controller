@@ -1,5 +1,7 @@
 #include "wifitransmitter.hh"
 
+#include <cstring>
+
 #include <unistd.h>
 #include <netdb.h>
 #include <sys/types.h>
@@ -7,7 +9,7 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 
-namespace std {
+using namespace std;
 
 bool WifiTransmitter::doOpen() {
   if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
@@ -40,7 +42,7 @@ bool WifiTransmitter::sendBytes(const uint8_t *bytes, uint32_t size) {
   int32_t code = send(sock, bytes, size, 0);
   
   if (code < 0) {
-    fprintf(stderr, "Error: connection with server interupted\n");
+    fprintf(stderr, "Error: connection with server interrupted");
     return false;
   } else if (code == 0) {
     fprintf(stderr, "Error: cannot send any bytes to server\n");
@@ -57,7 +59,7 @@ bool WifiTransmitter::recvBytes(uint8_t *bytes, uint32_t size, uint32_t& recvSiz
   ssize_t code = recv(sock, bytes, size, 0);
   
   if (code < 0) {
-    fprintf(stderr, "Error: connection with server interupted\n");
+    fprintf(stderr, "Error: connection with server interrupted\n");
     recvSize = 0;
     return false;
   } else if (code == 0) {
@@ -68,6 +70,4 @@ bool WifiTransmitter::recvBytes(uint8_t *bytes, uint32_t size, uint32_t& recvSiz
 
   recvSize = (uint32_t) code;
   return true;
-}
-
 }
