@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 4.2)
 
-project(PS4CONTROLLER CXX)
+project(ROBOTCONTROLLER CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
@@ -20,11 +20,20 @@ file(GLOB SOURCES
 
 target_sources(${PROJECT_NAME}
   PRIVATE
-    main.cc
+    controller.cc
     ${SOURCES}
 )
 
 target_link_libraries(${PROJECT_NAME}
   PRIVATE
     SDL3::SDL3
+)
+
+set(VIRTUAL_ROBOT_PROJECT_NAME ${PROJECT_NAME}_VIRTUALROBOT)
+
+add_executable(${VIRTUAL_ROBOT_PROJECT_NAME})
+
+target_sources(${VIRTUAL_ROBOT_PROJECT_NAME}
+  PRIVATE
+    virtualrobot.cc
 )
