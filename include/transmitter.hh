@@ -1,9 +1,9 @@
 // transmitter.cc  Copyright (C) 2026 Dubuisson Mattéo
 
+#include <cstdint>
+
 #ifndef __TRANSMITTER__HH__
 #define __TRANSMITTER__HH__
-
-#include <cstdint>
 
 class Transmitter {
 public:
@@ -48,11 +48,6 @@ public:
   inline
   bool sendByte(const uint8_t byte) {
     return sendBytes(&byte, 1);
-  }
-
-  inline
-  bool recvByte(uint8_t* byte) {
-    return recvByte(*byte);
   }
 
   inline
