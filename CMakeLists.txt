@@ -33,6 +33,11 @@ set(VIRTUAL_ROBOT_PROJECT_NAME ${PROJECT_NAME}_VIRTUALROBOT)
 
 add_executable(${VIRTUAL_ROBOT_PROJECT_NAME})
 
+target_include_directories(${VIRTUAL_ROBOT_PROJECT_NAME}
+  PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/
+)
+
 target_sources(${VIRTUAL_ROBOT_PROJECT_NAME}
   PRIVATE
     virtualrobot.cc
